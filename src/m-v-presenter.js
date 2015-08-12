@@ -25,6 +25,16 @@
       var personId = $(e.currentTarget).attr('data-id')
       Roster.remove(personId)
     })
+    // $view.on('click', '.add', function(e){
+
+    // })
+
+    $('#form').on('submit', function(e) {
+      e.preventDefault();
+      var name = $('#name').val();
+      var age = parseInt($('#age').val());
+      Person.add(name, age);
+    })
 
     // This is the function that puts the view on the page.
     this.render = function () {

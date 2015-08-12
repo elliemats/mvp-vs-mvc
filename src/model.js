@@ -35,4 +35,30 @@
     }
   }
 
+window.Person = {
+
+  add: function (name,age) {
+    var person = {};
+    person.name = name;
+    person.age = age;
+    person.id = Person.findNextID();
+    window.Roster.add(person);
+  },
+
+  findNextID: function () {
+    var lastID = 0;
+    for (var i = 0; i < peeps.length; i++) {
+      if (peeps[i].id > lastID) {
+        lastID = peeps[i].id;
+      }
+    }
+    return lastID + 1
+  }
+}
+// in window.Person =
+// add method that takes name and age
+// geterates an id
+// adds the person to the roster (Roster.add)
+
+
 })()
