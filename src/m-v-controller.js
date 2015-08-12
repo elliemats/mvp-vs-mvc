@@ -13,6 +13,13 @@
       // This is not very special (but it could be!)
       e.preventDefault()
       Roster.rotate()
+    },
+
+    add: function (e) {
+      e.preventDefault();
+      var name = $('#name').val();
+      var age = parseInt($('#age').val());
+      Person.add(name, age);
     }
   }
 
@@ -27,6 +34,13 @@
       // Example of the View reading from the Model
       Roster.map(personView)
     )
+  }
+
+  People.viewForm = function () {
+    return $('<form id="form">').append(
+      $("<input type='text' id='name'>"),
+      $("<input type='text' id='age'>"),
+      $("<input type='submit'>")).on('submit', People.controller.add)
   }
   // Helper view
   function personView (person) {
@@ -50,7 +64,8 @@
   // This function inserts the view into a given DOM element.
   People.render = function (element) {
     var peopleDOM = People.view()
-    $(element).empty().append(peopleDOM)
+    var formDOM = People.viewForm()
+    $(element).empty().append(formDOM, peopleDOM)
   }
 
   // The function puts the view on the page,
